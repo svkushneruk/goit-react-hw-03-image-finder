@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import css from 'components/ImageGallery/ImageGallery.module.css';
-import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+// import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { BallTriangle } from 'react-loader-spinner';
 
 export class ImageGallery extends Component {
