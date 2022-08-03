@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import css from 'components/SearchForm/SearchForm.module.css';
 
 export class SearchForm extends Component {

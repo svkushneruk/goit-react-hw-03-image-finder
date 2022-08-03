@@ -1,8 +1,9 @@
 import { Component } from 'react';
-
 import { ToastContainer } from 'react-toastify';
+
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
+// import { Modal } from './Modal/Modal';
 
 export class App extends Component {
   state = {
@@ -10,7 +11,6 @@ export class App extends Component {
   };
 
   handleSearch = searchQuery => {
-    console.log(searchQuery);
     this.setState({ searchQuery });
   };
 
@@ -19,12 +19,12 @@ export class App extends Component {
   render() {
     return (
       <div>
-        {/* {this.state.loading && <BallTriangle />} */}
         <Searchbar onSubmit={this.handleSearch} />
 
         <ImageGallery searchQuery={this.state.searchQuery} />
 
         <ToastContainer autoClose={2000} />
+        {/* <Modal /> */}
       </div>
     );
   }
