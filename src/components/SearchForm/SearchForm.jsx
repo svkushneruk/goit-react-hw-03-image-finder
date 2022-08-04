@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
+
 import 'react-toastify/dist/ReactToastify.css';
 import css from 'components/SearchForm/SearchForm.module.css';
 
@@ -15,7 +17,7 @@ export class SearchForm extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     if (this.state.searchQuery.trim() === '') {
-      toast.error('Enter your search');
+      toast.error('Enter your search query');
       return;
     }
 
@@ -44,3 +46,7 @@ export class SearchForm extends Component {
     );
   }
 }
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
