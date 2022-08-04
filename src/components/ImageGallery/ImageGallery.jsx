@@ -72,7 +72,6 @@ export class ImageGallery extends Component {
 
   render() {
     const { error, data, loader, showModal, modalInfo } = this.state;
-    console.log(loader);
     return (
       <>
         {error && <p>{error.message}</p>}
