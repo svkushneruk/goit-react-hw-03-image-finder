@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import css from 'components/ImageGallery/ImageGallery.module.css';
+import * as API from 'services';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Loader } from 'components/Loader/Loader';
 import { Button } from 'components/Button/Button';
@@ -32,17 +33,13 @@ export class ImageGallery extends Component {
       prevProps.searchQuery !== this.props.searchQuery ||
       prevState.page !== this.state.page
     ) {
+      if (prevProps.searchQuery !== this.props.searchQuery) {
+        this.setState({ data: [] });
+      }
       const query = this.props.searchQuery;
       this.setState({ loader: true });
-      fetch(
-        `https://pixabay.com/api/?q=${query}&page=${this.state.page}&key=28095599-4638dd4a9a44e9c8a84be8988&image_type=photo&orientation=horizontal&per_page=12`
-      )
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          return Promise.reject(new Error('Error'));
-        })
+
+      API.getImages(query, this.state.page)
         .then(response =>
           this.setState(prevState => {
             return {
@@ -51,14 +48,20 @@ export class ImageGallery extends Component {
           })
         )
         .catch(error => this.setState({ error }))
-        .finally(this.setState({ loader: false }));
+        .finally(() => this.setState({ loader: false }));
+    }
+    if (this.state.page > 1) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
     }
   }
 
-  handleItemClick = id => {
+  handleItemClick = (id, largeImageURL, tags) => {
     this.setState({
       showModal: true,
-      modalInfo: this.state.data.find(item => item.id === id),
+      modalInfo: { id, largeImageURL, tags },
     });
   };
 

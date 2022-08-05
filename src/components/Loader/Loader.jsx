@@ -1,12 +1,10 @@
-import { Component } from 'react';
 import { LineWave } from 'react-loader-spinner';
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-// export const Loader = () => {
-//   return <LineWave />;
-// };
+import css from 'components/Loader/Loader.module.css';
 
-export class Loader extends Component {
-  render() {
-    return <LineWave />;
-  }
-}
+export const Loader = () => {
+  return (
+    <div className={css.loader}>
+      <LineWave />
+    </div>
+  );
+};
